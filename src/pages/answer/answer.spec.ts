@@ -9,7 +9,7 @@ import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/databa
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Auth, User} from '@ionic/cloud-angular';
 import { App, ToastController } from 'ionic-angular';
-
+import { Camera } from '@ionic-native/camera';
 
 import { AnswerPage } from './answer';
 import { UtilityHelpers } from '../../providers/utility-helpers';
@@ -57,7 +57,8 @@ describe('AnswerPage', () => {
                 { provide: Http, useClass: HttpMock },
                 { provide: User, useClass: UserMock },
                 { provide: Auth, useClass: AuthMock },
-                { provide: Platform, useClass: PlatformMock}
+                { provide: Platform, useClass: PlatformMock},
+                Camera
             ]
         })
     }))
@@ -94,7 +95,7 @@ describe('AnswerPage', () => {
           cnt++;
         }
 
-        expect(cnt).toEqual(8);
+        expect(cnt).toEqual(9);
     });
 
     it('onSubmitAnswer should be defined', () => {

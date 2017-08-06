@@ -49,11 +49,12 @@ export class QuestionArchivePage {
   ionViewDidLoad() {
     this.user = this.afAuth.auth.currentUser;
 
+    //Check if the user is logged in and if they are not send them to the login page.
     if ( this.user != null ) {
       
-      //Get logged in user from af database by matching user id
+      //Get logged in user data from the firebase adatabase by matching user id
       this.http.get('https://einstein-981c4.firebaseio.com/users.json?orderBy="user_id"&equalTo="' + this.user.uid + '"')
-      .subscribe( (user_info) => {
+      .subscribe((user_info) => {
 
         let userObject = user_info.json();
         for(var key in userObject){
@@ -91,9 +92,8 @@ export class QuestionArchivePage {
   getColor(question) {
     return question.isClosed ? 'green' : 'black';
   }
-  
+
   fetchQuestions(messageType) {
-    //TODO Refactor
     if(messageType === 'all') {
       this.questions = this.af.list('/userQuestions',  {
         query: {
@@ -125,27 +125,26 @@ export class QuestionArchivePage {
   }
 
   getViewCount() {
-    //TODO Refactor
 
     if(!this.viewCountRunning) {
       this.viewCountRunning = true;
-
-      this.questions.forEach( ( questions ) => {
-        questions.forEach( (question) => {
+      this.questions.forEach((questions) => {
+        questions.forEach((question) => {
           this.http.get('https://einstein-981c4.firebaseio.com/userAnswers.json?orderBy="question_id"&equalTo="' + question.$key + '"')
-          .subscribe( (answers) => {
+          .subscribe((answers) => {
 
             let objAnswers = answers.json();
             this.count[question.$key] = 0;
 
-            Object.keys(objAnswers).forEach( (answer) => {
+            Object.keys(objAnswers).forEach((answer) => {
               this.http.get('https://einstein-981c4.firebaseio.com/answerViews.json?orderBy="user_answer_id"&equalTo="' + this.user.uid + answer + '"')
-              .subscribe( (view) => {
+              .subscribe((view) => {
                 if(Object.keys(view.json()).length === 0) {
                   this.count[question.$key]++;
                 }
               });
             });
+
             this.viewCountRunning = false;
           });
         });

@@ -93,6 +93,7 @@ export class AnswerPage {
   onCloseClick(q) {
     this.questions.update(q.$key, {
       isClosed: true,
+      userClosed: this.afAuth.auth.currentUser.uid + true,
       closedOn: Date.now()
     });
   }

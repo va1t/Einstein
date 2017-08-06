@@ -34,6 +34,7 @@ export class HomePage {
   ) {
     // this.updateQuestionStream();
   }
+  
   ionViewDidLoad() {
     this.app.setTitle('Questions');
     this.updateQuestionStream();
@@ -89,11 +90,11 @@ export class HomePage {
 
   filter() {
     this.streamData.filterItems(this.queryText, {
-        opFilter: this.opFilter,
-        topicFilter: this.topicFilter
+      opFilter: this.opFilter,
+      topicFilter: this.topicFilter
       })
-      .subscribe ((data: any) => {
-        this.questions = data;
+    .subscribe ((data: any) => {
+      this.questions = data;
     });
   }
 

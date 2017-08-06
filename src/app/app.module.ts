@@ -42,21 +42,8 @@ import { FilterpopoverPage } from '../pages/home/filterpopover/filterpopover';
 //custom pipes
 import { ReversePipe } from '../pipes/reversepipe';
 
-export const firebaseConfig = {
-  apiKey: "AIzaSyD-p5kimWSiFWZorVKEUNfuscpbC_bW4oc",
-  authDomain: "einstein-981c4.firebaseapp.com",
-  databaseURL: "https://einstein-981c4.firebaseio.com",
-  projectId: "einstein-981c4",
-  storageBucket: "einstein-981c4.appspot.com",
-  messagingSenderId: "780646176835"
-};
-
-
-const cloudSettings: CloudSettings = {
-  'core': {
-    'app_id': 'a3b9d8c7'
-  }
-};
+export const firebaseConfig = require("../firebase_config.json");
+const cloudSettings: CloudSettings = require("../cloud_settings.json");
 
 @NgModule({
   declarations: [

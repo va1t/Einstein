@@ -3,7 +3,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-     <ion-title>Question Feed</ion-title>
+    <ion-title>Question Feed</ion-title>
   </ion-navbar>
   <ion-toolbar no-border-top>
     <ion-searchbar color="primary"
@@ -16,15 +16,15 @@
     <ion-buttons start>
     </ion-buttons>
     <ion-segment [(ngModel)]="opFilter">
-        <ion-segment-button value="all" (click)="filter()">
-          All
-        </ion-segment-button>
-        <ion-segment-button value="false" (click)="filter()">
-          Open
-        </ion-segment-button>
-        <ion-segment-button value="true" (click)="filter()">
-          Closed
-        </ion-segment-button>
+      <ion-segment-button value="all" (click)="filter()">
+        All
+      </ion-segment-button>
+      <ion-segment-button value="false" (click)="filter()">
+        Open
+      </ion-segment-button>
+      <ion-segment-button value="true" (click)="filter()">
+        Closed
+      </ion-segment-button>
     </ion-segment>
     <ion-buttons end>
       <button ion-button icon-only (click)="presentPopover($event)">
@@ -35,9 +35,6 @@
 </ion-header>
 
 <ion-content padding>
-  <!-- <ion-refresher (ionRefresh)="doRefresh($event)">
-    <ion-refresher-content></ion-refresher-content>
-  </ion-refresher> -->
   <ion-list>
     <button ion-item *ngFor="let question of questions | reverse"
     [attr.question]="tester" (click)="onQuestionClick(question)">
@@ -46,22 +43,6 @@
       <p>{{question.topic}} | {{utils.humanReadableTime(question.createdOn)}}</p>
     </button>
   </ion-list>
-  <!-- <ion-card>
-    <ion-card-header>
-      What is the value of Pi?
-    </ion-card-header>
-    <ion-card-content>
-      The number π is a mathematical constant, the ratio of a circle's circumference to its diameter, commonly approximated as 3.14159.
-    </ion-card-content>
-  </ion-card>
-  <ion-card>
-    <ion-card-header>
-      What is the Pythagorean theorem?
-    </ion-card-header>
-    <ion-card-content>
-      The Pythagorean theorem, also known as Pythagoras's theorem, is a fundamental relation in Euclidean geometry among the three sides of a right triangle. It states that the square of the hypotenuse (the side opposite the right angle) is equal to the sum of the squares of the other two sides.
-    </ion-card-content>
-  </ion-card> -->
   <ion-fab bottom right #fab>
     <button ion-fab (click)="onAskQuestion()"><ion-icon name="create"></ion-icon></button>
   </ion-fab>
